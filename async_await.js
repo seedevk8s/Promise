@@ -33,11 +33,15 @@ const getTurtle = async () => {
 };
 
 /* 여기서 배열 비구조화 할당 문법을 사용한다면 각 결과값을 따로 따로 추출해서 조회 할 수 있습니다.*/
+/* Promise.all 를 사용 할 때에는, 등록한 프로미스 중 하나라도 실패하면, 모든게 실패 한 것으로 간주합니다.*/
+
+/*Promise.race 라는 것에 대해서 알아봅시다.*/
+/*여러개의 프로미스를 등록해서 실행했을 때 가장 빨리 끝난것 하나만의 결과값을 가져옵니다.*/
+/* Promise.race 의 경우엔 가장 다른 Promise 가 먼저 성공하기 전에 가장 먼저 끝난 Promise 가 실패하면 이를 실패로 간주합니다.
+따라서, 현재 위의 코드에서 getRabbit 에서 에러를 발생시킨다면 에러를 잡아낼 수 있지만, getTurtle 이나 getDog 에서 발생한 에러는 무시됩니다.*/
 async function process() {
-    const [ dog, rabbit, turtle ] = await Promise.all([getDog(),getRabbit(),getTurtle()]);
-    console.log(dog);
-    console.log(rabbit);
-    console.log(turtle);
+    const first = await Promise.race([getDog(),getRabbit(),getTurtle()]);
+    console.log(first);
 }
 
 process();
