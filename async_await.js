@@ -13,4 +13,7 @@ async function process() {
     console.log('반갑습니다!');
 }
 
-process();
+/* 함수에서 async 를 사용하면, 해당 함수는 결과값으로 Promise 를 반환하게 됩니다.*/
+process().then(() => {
+    console.log('작업이 끝났어요!');
+});
