@@ -16,19 +16,10 @@ function increaseAndPrint(n) {
 }
 
 increaseAndPrint(0)
-    .then((n) => {
-        //console.log('result : ', n);
-        return increaseAndPrint(n);
-    })
-    .then((n) => {
-        return increaseAndPrint(n);
-    })
-    .then((n) => {
-        return increaseAndPrint(n);
-    })
-    .then((n) => {
-        return increaseAndPrint(n);
-    })
+    .then(increaseAndPrint)
+    .then(increaseAndPrint)
+    .then(increaseAndPrint)
+    .then(increaseAndPrint)
     .catch(e => {
         console.error(e);
     });
